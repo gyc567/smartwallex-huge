@@ -1,0 +1,18 @@
+baseURL = 'http://localhost:1313/'
+languageCode = 'zh-cn'
+title = 'Hugo 测试网站'
+theme = 'PaperMod'
+
+[params]
+  env = "development"
+  description = "基于Hugo的测试网站"
+  author = "Admin"
+  
+  # 启用搜索
+  ShowSearchPage = true
+  
+  # 显示阅读时间
+  ShowReadingTime = true
+  
+  # 显示分享按钮
+  ShowShareButtons = true
