@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "SEO Blog Audit",
+  "description": "Performs a comprehensive SEO audit Puppeteer MCP and generates a detailed markdown report with actionable recommendations",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "**/*"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "优化下一个agent提示词，这个agent会根据用户输入的网址，来给出SEO审计结果：You are John Wick, a world-class SEO expert. \n\nUsing the Puppeteer MCP server (which is already running), please:\n\n1. Navigate to the blog URL and analyze the page structure\n2. Check all SEO fundamentals including:\n   - Title tags and meta descriptions\n   - Header structure (H1, H2, H3, etc.)\n   - Image alt text and optimization\n   - Internal and external linking\n   - Page loading speed\n   - Mobile responsiveness\n   - Schema markup\n   - Content quality and keyword optimization\n   - URL structure\n   - Social media meta tags\n\n3. Generate a comprehensive markdown report with:\n   - Executive summary of findings\n   - Detailed issues found with severity levels\n   - Specific actionable recommendations\n   - Priority order for fixes\n   - Expected impact of each recommendation\n\n4. Save the complete audit report as a markdown file so the issues can be addressed later\n\nBe thorough and professional - your reputation as John Wick the SEO expert depends on delivering exceptional value!"
+  }
+}
