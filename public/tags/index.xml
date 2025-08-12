@@ -6,8 +6,71 @@
     <description>Recent content in Tags on SmartWallex - 加密货币聪明钱信息聚合平台</description>
     <generator>Hugo -- 0.148.2</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 12 Aug 2025 10:41:58 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 12 Aug 2025 16:52:01 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Defi</title>
+      <link>http://localhost:1313/tags/defi/</link>
+      <pubDate>Tue, 12 Aug 2025 16:52:01 +0800</pubDate>
+      <guid>http://localhost:1313/tags/defi/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SpotOnChain</title>
+      <link>http://localhost:1313/tags/spotonchain/</link>
+      <pubDate>Tue, 12 Aug 2025 16:52:01 +0800</pubDate>
+      <guid>http://localhost:1313/tags/spotonchain/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>以太坊</title>
+      <link>http://localhost:1313/tags/%E4%BB%A5%E5%A4%AA%E5%9D%8A/</link>
+      <pubDate>Tue, 12 Aug 2025 16:52:01 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E4%BB%A5%E5%A4%AA%E5%9D%8A/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>加密货币</title>
+      <link>http://localhost:1313/tags/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/</link>
+      <pubDate>Tue, 12 Aug 2025 16:52:01 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>区块链</title>
+      <link>http://localhost:1313/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</link>
+      <pubDate>Tue, 12 Aug 2025 16:52:01 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>投资工具</title>
+      <link>http://localhost:1313/tags/%E6%8A%95%E8%B5%84%E5%B7%A5%E5%85%B7/</link>
+      <pubDate>Tue, 12 Aug 2025 16:52:01 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E6%8A%95%E8%B5%84%E5%B7%A5%E5%85%B7/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>数据分析</title>
+      <link>http://localhost:1313/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</link>
+      <pubDate>Tue, 12 Aug 2025 16:52:01 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>比特币</title>
+      <link>http://localhost:1313/tags/%E6%AF%94%E7%89%B9%E5%B8%81/</link>
+      <pubDate>Tue, 12 Aug 2025 16:52:01 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E6%AF%94%E7%89%B9%E5%B8%81/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>链上分析</title>
+      <link>http://localhost:1313/tags/%E9%93%BE%E4%B8%8A%E5%88%86%E6%9E%90/</link>
+      <pubDate>Tue, 12 Aug 2025 16:52:01 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E9%93%BE%E4%B8%8A%E5%88%86%E6%9E%90/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Blockchain</title>
       <link>http://localhost:1313/tags/blockchain/</link>
@@ -20,13 +83,6 @@
       <link>http://localhost:1313/tags/crypto/</link>
       <pubDate>Tue, 12 Aug 2025 10:41:58 +0800</pubDate>
       <guid>http://localhost:1313/tags/crypto/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Defi</title>
-      <link>http://localhost:1313/tags/defi/</link>
-      <pubDate>Tue, 12 Aug 2025 10:41:58 +0800</pubDate>
-      <guid>http://localhost:1313/tags/defi/</guid>
       <description></description>
     </item>
     <item>
