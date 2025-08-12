@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Hugo 测试网站</title>
-    <link>http://localhost:1313/</link>
-    <description>Recent content on Hugo 测试网站</description>
+    <title>Defi on Hugo 测试网站</title>
+    <link>http://localhost:1313/tags/defi/</link>
+    <description>Recent content in Defi on Hugo 测试网站</description>
     <generator>Hugo -- 0.148.2</generator>
     <language>zh-cn</language>
     <lastBuildDate>Tue, 12 Aug 2025 10:41:58 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/defi/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>欢迎来到SmartWallex - 加密货币聪明钱信息聚合平台</title>
       <link>http://localhost:1313/posts/welcome/</link>
@@ -64,26 +64,6 @@
 &lt;/ul&gt;
 &lt;h2 id=&#34;-展望未来&#34;&gt;🔮 展望未来&lt;/h2&gt;
 &lt;p&gt;SmartWallex将持续进化，我们正在开发：&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>关于我们</title>
-      <link>http://localhost:1313/about/</link>
-      <pubDate>Sun, 10 Aug 2025 10:42:56 +0800</pubDate>
-      <guid>http://localhost:1313/about/</guid>
-      <description>&lt;h1 id=&#34;关于这个网站&#34;&gt;关于这个网站&lt;/h1&gt;
-&lt;p&gt;这是一个基于Hugo构建的测试网站，使用了PaperMod主题。&lt;/p&gt;
-&lt;h2 id=&#34;技术栈&#34;&gt;技术栈&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Hugo&lt;/strong&gt;: 静态网站生成器&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;PaperMod&lt;/strong&gt;: 现代化主题&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Markdown&lt;/strong&gt;: 内容编写格式&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;联系方式&#34;&gt;联系方式&lt;/h2&gt;
-&lt;p&gt;如有问题，请通过以下方式联系我们：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;邮箱: [email]&lt;/li&gt;
-&lt;li&gt;网站: [website]&lt;/li&gt;
-&lt;/ul&gt;</description>
     </item>
   </channel>
 </rss>
