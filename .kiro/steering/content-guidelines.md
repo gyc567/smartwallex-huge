@@ -31,8 +31,37 @@ categories = ['分类']
 内容...
 ```
 
+### 文章结尾标准格式
+每篇文章结尾必须包含以下作者信息和引流内容：
+
+```markdown
+---
+
+## 📞 关于作者
+
+**ERIC** - 《区块链核心技术与应用》作者之一，前火币机构事业部|矿池技术主管，比特财商|Nxt Venture Capital 创始人
+
+### 🔗 联系方式与平台
+
+- **📧 邮箱**: [gyc567@gmail.com](mailto:gyc567@gmail.com)
+- **🐦 Twitter**: [@EricBlock2100](https://twitter.com/EricBlock2100)
+- **💬 微信**: 360369487
+- **📱 Telegram**: [https://t.me/fatoshi_block](https://t.me/fatoshi_block)
+- **📢 Telegram频道**: [https://t.me/cryptochanneleric](https://t.me/cryptochanneleric)
+- **👥 加密情报TG群**: [https://t.me/btcgogopen](https://t.me/btcgogopen)
+- **🎥 YouTube频道**: [https://www.youtube.com/@0XBitFinance](https://www.youtube.com/@0XBitFinance)
+
+### 🌐 相关平台
+
+- **📊 加密货币信息聚合网站**: [https://www.smartwallex.com/](https://www.smartwallex.com/)
+- **📖 公众号**: 比特财商
+
+*欢迎关注我的各个平台，获取最新的加密货币市场分析和投资洞察！*
+```
+
 ### 避免的错误
 - ❌ 在正文中重复front matter的title
 - ❌ 使用H1标题作为正文开头
 - ❌ 标题层级混乱
 - ❌ 缺少SEO元数据
+- ❌ 忘记添加文章结尾的作者信息和引流内容

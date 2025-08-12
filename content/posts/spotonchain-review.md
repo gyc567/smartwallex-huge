@@ -265,3 +265,26 @@ keywords = ['SpotOnChain评测', '区块链数据分析', '链上追踪工具', 
 *在数据驱动的加密货币投资时代，SpotOnChain为专业投资者提供了不可或缺的链上洞察能力。无论您是刚入门的投资者还是经验丰富的交易员，这个平台都能为您的投资决策提供有力支持。*
 
 **免责声明**：本评测基于公开信息和实际使用体验，不构成投资建议。加密货币投资存在高风险，请根据自身情况谨慎决策。建议在使用任何分析工具前，先充分了解其功能特性和使用限制。
+---
+
+
+## 📞 关于作者
+
+**ERIC** - 《区块链核心技术与应用》作者之一，前火币机构事业部|矿池技术主管，比特财商|Nxt Venture Capital 创始人
+
+### 🔗 联系方式与平台
+
+- **📧 邮箱**: [gyc567@gmail.com](mailto:gyc567@gmail.com)
+- **🐦 Twitter**: [@EricBlock2100](https://twitter.com/EricBlock2100)
+- **💬 微信**: 360369487
+- **📱 Telegram**: [https://t.me/fatoshi_block](https://t.me/fatoshi_block)
+- **📢 Telegram频道**: [https://t.me/cryptochanneleric](https://t.me/cryptochanneleric)
+- **👥 加密情报TG群**: [https://t.me/btcgogopen](https://t.me/btcgogopen)
+- **🎥 YouTube频道**: [https://www.youtube.com/@0XBitFinance](https://www.youtube.com/@0XBitFinance)
+
+### 🌐 相关平台
+
+- **📊 加密货币信息聚合网站**: [https://www.smartwallex.com/](https://www.smartwallex.com/)
+- **📖 公众号**: 比特财商
+
+*欢迎关注我的各个平台，获取最新的加密货币市场分析和投资洞察！*

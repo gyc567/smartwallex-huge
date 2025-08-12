@@ -73,3 +73,25 @@ SmartWallex将持续进化，我们正在开发：
 *在加密货币的世界里，信息差就是财富差。让SmartWallex成为您通往财富自由的智能伙伴。*
 
 **免责声明**: 本网站提供的信息仅供参考，不构成投资建议。加密货币投资存在高风险，请谨慎决策。
+---
+
+## 📞 关于作者
+
+**ERIC** - 《区块链核心技术与应用》作者之一，前火币机构事业部|矿池技术主管，比特财商|Nxt Venture Capital 创始人
+
+### 🔗 联系方式与平台
+
+- **📧 邮箱**: [gyc567@gmail.com](mailto:gyc567@gmail.com)
+- **🐦 Twitter**: [@EricBlock2100](https://twitter.com/EricBlock2100)
+- **💬 微信**: 360369487
+- **📱 Telegram**: [https://t.me/fatoshi_block](https://t.me/fatoshi_block)
+- **📢 Telegram频道**: [https://t.me/cryptochanneleric](https://t.me/cryptochanneleric)
+- **👥 加密情报TG群**: [https://t.me/btcgogopen](https://t.me/btcgogopen)
+- **🎥 YouTube频道**: [https://www.youtube.com/@0XBitFinance](https://www.youtube.com/@0XBitFinance)
+
+### 🌐 相关平台
+
+- **📊 加密货币信息聚合网站**: [https://www.smartwallex.com/](https://www.smartwallex.com/)
+- **📖 公众号**: 比特财商
+
+*欢迎关注我的各个平台，获取最新的加密货币市场分析和投资洞察！*
