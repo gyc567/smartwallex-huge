@@ -46,11 +46,13 @@ enableEmoji = true
   author = "ERIC"
   
   # 网站图标
-  assets.favicon = "/favicon.ico"
+  [params.assets]
+    favicon = "/favicon.ico"
   
   # 首页模式
-  homeInfoParams.Title = "SmartWallex 🚀"
-  homeInfoParams.Content = "专业的加密货币聪明钱信息聚合平台，为您提供最新的GitHub项目评测、市场分析和投资洞察。"
+  [params.homeInfoParams]
+    Title = "SmartWallex 🚀"
+    Content = "专业的加密货币聪明钱信息聚合平台，为您提供最新的GitHub项目评测、市场分析和投资洞察。"
   
   # 社交链接
   [[params.socialIcons]]
@@ -87,17 +89,19 @@ enableEmoji = true
   ShowSearchPage = true
   
   # 编辑链接
-  editPost.URL = "https://github.com/smartwallex/smartwallex-hugo/tree/master/content"
-  editPost.Text = "编辑此页"
-  editPost.appendFilePath = true
+  [params.editPost]
+    URL = "https://github.com/gyc567/smartwallex-huge/tree/master/content"
+    Text = "编辑此页"
+    appendFilePath = true
   
   # 分析和SEO
   googleAnalytics = ""
   
   # 封面图片
-  cover.hidden = false
-  cover.hiddenInList = false
-  cover.hiddenInSingle = false
+  [params.cover]
+    hidden = false
+    hiddenInList = false
+    hiddenInSingle = false
 
 # 分类法配置
 [taxonomies]
