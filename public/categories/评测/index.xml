@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>评测 on SmartWallex - 加密货币聪明钱信息聚合平台</title>
-    <link>http://localhost:1313/categories/%E8%AF%84%E6%B5%8B/</link>
+    <link>http://localhost:53257/categories/%E8%AF%84%E6%B5%8B/</link>
     <description>Recent content in 评测 on SmartWallex - 加密货币聪明钱信息聚合平台</description>
     <generator>Hugo -- 0.148.2</generator>
     <language>zh-cn</language>
     <lastBuildDate>Tue, 12 Aug 2025 17:19:19 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/categories/%E8%AF%84%E6%B5%8B/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:53257/categories/%E8%AF%84%E6%B5%8B/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CoinMarketCap完整评测：2025年最权威的加密货币数据平台深度分析</title>
-      <link>http://localhost:1313/posts/coinmarketcap-review/</link>
+      <link>http://localhost:53257/posts/coinmarketcap-review/</link>
       <pubDate>Tue, 12 Aug 2025 17:19:19 +0800</pubDate>
-      <guid>http://localhost:1313/posts/coinmarketcap-review/</guid>
+      <guid>http://localhost:53257/posts/coinmarketcap-review/</guid>
       <description>CoinMarketCap全面评测指南，涵盖20000&#43;加密货币数据追踪、交易所排名、DeFi收益率聚合等核心功能。专业分析CMC的优缺点、使用技巧和付费服务，助力加密货币投资决策。</description>
     </item>
     <item>
       <title>SpotOnChain区块链分析平台深度评测：2025年最全面的链上数据分析工具指南</title>
-      <link>http://localhost:1313/posts/spotonchain-review/</link>
+      <link>http://localhost:53257/posts/spotonchain-review/</link>
       <pubDate>Tue, 12 Aug 2025 16:52:01 +0800</pubDate>
-      <guid>http://localhost:1313/posts/spotonchain-review/</guid>
+      <guid>http://localhost:53257/posts/spotonchain-review/</guid>
       <description>SpotOnChain区块链分析平台完整评测，包含功能详解、使用指南、优缺点分析和订阅建议。专业的链上数据追踪和智能分析工具，助力加密货币投资决策。</description>
     </item>
   </channel>
