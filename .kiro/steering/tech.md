@@ -6,13 +6,10 @@
 - **Configuration**: TOML format (hugo.toml)
 
 ## Themes
-The project supports dual themes via Git submodules:
+The project uses a single theme via Git submodule:
 - **PaperMod**: Modern blog theme (currently active)
   - Features: Dark/light mode, search, mobile-responsive, SEO optimized
   - Use for: Blog posts, articles, content-focused pages
-- **WebStack**: Navigation/directory theme  
-  - Features: Website directory, categorized links, responsive design
-  - Use for: Resource aggregation, link collections
 
 ## Development Environment
 - **Hugo Extended**: Required for SCSS processing
@@ -62,11 +59,11 @@ hugo --destination dist/
 # Initialize submodules
 git submodule update --init --recursive
 
-# Update themes
+# Update theme
 git submodule update --remote
 
-# Switch themes (edit hugo.toml)
-theme = 'PaperMod'  # or 'webstack'
+# Theme configuration (edit hugo.toml)
+theme = 'PaperMod'
 ```
 
 ## Content Format

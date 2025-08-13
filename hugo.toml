@@ -1,18 +1,121 @@
-baseURL = 'http://localhost:1313/'
+baseURL = 'https://www.smartwallex.com/'
 languageCode = 'zh-cn'
 title = 'SmartWallex - 加密货币聪明钱信息聚合平台'
 theme = 'PaperMod'
 
+# 启用表情符号支持
+enableEmoji = true
+
+# 分页设置
+paginate = 10
+
+# 菜单配置
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "首页"
+    url = "/"
+    weight = 10
+  [[menu.main]]
+    identifier = "posts"
+    name = "文章"
+    url = "/posts/"
+    weight = 20
+  [[menu.main]]
+    identifier = "categories"
+    name = "分类"
+    url = "/categories/"
+    weight = 30
+  [[menu.main]]
+    identifier = "tags"
+    name = "标签"
+    url = "/tags/"
+    weight = 40
+  [[menu.main]]
+    identifier = "about"
+    name = "关于"
+    url = "/about/"
+    weight = 50
+
 [params]
-  env = "development"
-  description = "基于Hugo的测试网站"
-  author = "Admin"
+  env = "production"
+  title = "SmartWallex"
+  description = "专业的加密货币聪明钱信息聚合平台，提供GitHub项目评测、市场分析和投资洞察"
+  keywords = ["加密货币", "聪明钱", "GitHub项目", "区块链", "DeFi", "投资分析"]
+  author = "ERIC"
   
-  # 启用搜索
+  # 网站图标
+  assets.favicon = "/favicon.ico"
+  
+  # 首页模式
+  homeInfoParams.Title = "SmartWallex 🚀"
+  homeInfoParams.Content = "专业的加密货币聪明钱信息聚合平台，为您提供最新的GitHub项目评测、市场分析和投资洞察。"
+  
+  # 社交链接
+  [[params.socialIcons]]
+    name = "twitter"
+    url = "https://twitter.com/EricBlock2100"
+  [[params.socialIcons]]
+    name = "telegram"
+    url = "https://t.me/fatoshi_block"
+  [[params.socialIcons]]
+    name = "youtube"
+    url = "https://www.youtube.com/@0XBitFinance"
+  [[params.socialIcons]]
+    name = "email"
+    url = "mailto:gyc567@gmail.com"
+  
+  # 功能开关
+  ShowReadingTime = true
+  ShowShareButtons = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowWordCount = true
+  ShowRssButtonInSectionTermList = true
+  UseHugoToc = true
+  disableSpecial1stPost = false
+  disableScrollToTop = false
+  comments = false
+  hidemeta = false
+  hideSummary = false
+  showtoc = true
+  tocopen = false
+  
+  # 搜索功能
   ShowSearchPage = true
   
-  # 显示阅读时间
-  ShowReadingTime = true
+  # 编辑链接
+  editPost.URL = "https://github.com/smartwallex/smartwallex-hugo/tree/master/content"
+  editPost.Text = "编辑此页"
+  editPost.appendFilePath = true
   
-  # 显示分享按钮
-  ShowShareButtons = true
+  # 分析和SEO
+  googleAnalytics = ""
+  
+  # 封面图片
+  cover.hidden = false
+  cover.hiddenInList = false
+  cover.hiddenInSingle = false
+
+# 分类法配置
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  series = "series"
+
+# 标记配置
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    noClasses = false
+    codeFences = true
+    guessSyntax = true
+    lineNos = true
+    style = "github"
+
+# 输出格式
+[outputs]
+  home = ["HTML", "RSS", "JSON"]

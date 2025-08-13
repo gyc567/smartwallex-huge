@@ -13,9 +13,8 @@
 ├── i18n/                # Internationalization files
 ├── layouts/             # Custom layout overrides
 ├── static/              # Static assets (served directly)
-├── themes/              # Theme submodules
-│   ├── PaperMod/        # Blog theme (Git submodule)
-│   └── webstack/        # Navigation theme (Git submodule)
+├── themes/              # Theme submodule
+│   └── PaperMod/        # Blog theme (Git submodule)
 ├── public/              # Generated site output (ignored in Git)
 ├── hugo.toml            # Main configuration file
 ├── .gitmodules          # Git submodule configuration
@@ -52,11 +51,6 @@ categories = ['公告']
 - **Features**: Search, dark/light mode, responsive design
 - **Customization**: Override layouts in project `layouts/` directory
 
-### WebStack Theme (Alternative)
-- **Purpose**: Website directory and navigation
-- **Data**: Uses `data/` directory for site collections
-- **Assets**: Extensive logo collection in theme assets
-
 ## Asset Management
 
 ### Images and Logos
@@ -78,7 +72,6 @@ categories = ['公告']
 
 ### Theme Configuration
 - **PaperMod**: Configured via `[params]` in hugo.toml
-- **WebStack**: Requires additional data files in `data/` directory
 
 ## Build Output
 - **Directory**: `public/`
@@ -93,10 +86,10 @@ categories = ['公告']
 3. Test with `hugo server -D`
 4. Build with `hugo --minify` for production
 
-### Theme Switching
-1. Modify `theme` parameter in `hugo.toml`
-2. Restart development server
-3. Adjust configuration as needed for theme-specific features
+### Theme Management
+1. Current theme: PaperMod (configured in `hugo.toml`)
+2. Restart development server after configuration changes
+3. Customize via `layouts/` directory overrides
 
 ## File Naming Conventions
 - **Posts**: Use descriptive, URL-friendly names

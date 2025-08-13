@@ -85,5 +85,7 @@
   </url><url>
     <loc>http://localhost:53257/about/</loc>
     <lastmod>2025-08-10T10:42:56+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:53257/series/</loc>
   </url>
 </urlset>

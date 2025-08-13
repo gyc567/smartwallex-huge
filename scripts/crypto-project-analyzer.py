@@ -176,7 +176,11 @@ class CryptoProjectAnalyzer:
         github_url = basic_info['html_url']
         
         # 生成文章内容
-        content = f"""**{name}**是一个备受关注的{category}项目，在GitHub上已获得{stars:,}个星标，展现出强劲的社区关注度和发展潜力。该项目主要使用{language}开发，为加密货币生态系统提供创新解决方案。
+        content = f"""{{< alert >}}
+**项目快览**: {name}是一个{category}项目，GitHub上{stars:,}个⭐，主要使用{language}开发
+{{< /alert >}}
+
+**{name}**是一个备受关注的{category}项目，在GitHub上已获得{stars:,}个星标，展现出强劲的社区关注度和发展潜力。该项目主要使用{language}开发，为加密货币生态系统提供创新解决方案。
 
 ## 🎯 项目概览
 
@@ -221,8 +225,11 @@ class CryptoProjectAnalyzer:
 
         # 添加项目标签
         if 'topics' in project_details and project_details['topics']:
-            content += f"\n\n### 项目标签\n"
-            content += f"该项目被标记为: {', '.join(project_details['topics'][:10])}\n"
+            content += f"\n\n### 🏷️ 项目标签\n"
+            topics_badges = []
+            for topic in project_details['topics'][:10]:
+                topics_badges.append(f"`{topic}`")
+            content += f"该项目被标记为: {' '.join(topics_badges)}\n"
 
         # 添加评测分析
         content += f"""
@@ -352,9 +359,23 @@ date = '{datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S+08:00')}'
 draft = false
 title = '{title.replace("'", "\\'")}'
 description = '{description}。GitHub {project['stargazers_count']:,} stars，{analyzer.analyze_project_category(project_details)}领域热门开源项目深度评测。'
+summary = '{project['name']}是一个备受关注的{analyzer.analyze_project_category(project_details)}项目，在GitHub上已获得{project['stargazers_count']:,}个星标。'
 tags = ['GitHub', '开源项目', '加密货币', '{analyzer.analyze_project_category(project_details)}', '{project.get('language', 'Unknown')}', '项目评测']
 categories = ['GitHub热门']
 keywords = ['{project['name'].replace("'", "\\'")}评测', 'GitHub加密货币项目', '{analyzer.analyze_project_category(project_details)}工具', '开源区块链项目']
+author = 'ERIC'
+ShowToc = true
+TocOpen = false
+ShowReadingTime = true
+ShowBreadCrumbs = true
+ShowPostNavLinks = true
+ShowWordCount = true
+ShowShareButtons = true
+cover.image = ""
+cover.alt = "{project['name']} - {analyzer.analyze_project_category(project_details)}项目评测"
+cover.caption = "GitHub热门加密货币项目深度分析"
+cover.relative = false
+cover.hidden = false
 +++
 
 {review_content}

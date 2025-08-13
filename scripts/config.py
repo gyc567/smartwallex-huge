@@ -16,7 +16,7 @@ SEARCH_KEYWORDS = [
 ]
 
 # 项目筛选条件
-MIN_STARS = 10  # 最小星标数
+MIN_STARS = 100  # 最小星标数
 DAYS_BACK = 7   # 搜索最近N天的项目
 MAX_PROJECTS = 3  # 每日最多分析项目数
 
