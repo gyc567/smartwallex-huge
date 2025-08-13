@@ -1,6 +1,10 @@
 # RSS feed redirects
 /rss /feed.xml 200
+/feed /feed.xml 200
 /index.xml /feed.xml 200
 
-# Ensure root serves HTML
-/ /index.html 200
+# Service Worker
+/sw.js /sw.js 200
+
+# Default routes (Vercel should handle these automatically)
+# / /index.html 200
