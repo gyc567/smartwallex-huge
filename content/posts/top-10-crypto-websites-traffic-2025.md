@@ -15,11 +15,12 @@ ShowBreadCrumbs = true
 ShowPostNavLinks = true
 ShowWordCount = true
 ShowShareButtons = true
-cover.image = ""
-cover.alt = "2025年全球十大加密货币网站流量排行榜"
-cover.caption = "基于权威数据的加密货币网站流量深度分析"
-cover.relative = false
-cover.hidden = false
+[cover]
+image = ""
+alt = "2025年全球十大加密货币网站流量排行榜"
+caption = "基于权威数据的加密货币网站流量深度分析"
+relative = false
+hidden = false
 +++
 
 {{< alert >}}

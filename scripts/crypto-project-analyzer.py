@@ -554,11 +554,13 @@ ShowBreadCrumbs = true
 ShowPostNavLinks = true
 ShowWordCount = true
 ShowShareButtons = true
-cover.image = ""
-cover.alt = "{project['name']} - {analyzer.analyze_project_category(project_details)}项目评测"
-cover.caption = "GitHub热门加密货币项目深度分析"
-cover.relative = false
-cover.hidden = false
+
+[cover]
+image = ""
+alt = "{project['name']} - {analyzer.analyze_project_category(project_details)}项目评测"
+caption = "GitHub热门加密货币项目深度分析"
+relative = false
+hidden = false
 +++
 
 {review_content}

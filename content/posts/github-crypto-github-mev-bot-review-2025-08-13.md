@@ -15,11 +15,12 @@ ShowBreadCrumbs = true
 ShowPostNavLinks = true
 ShowWordCount = true
 ShowShareButtons = true
-cover.image = ""
-cover.alt = "Github-Mev-Bot - DeFi协议项目评测"
-cover.caption = "GitHub热门加密货币项目深度分析"
-cover.relative = false
-cover.hidden = false
+[cover]
+image = ""
+alt = "Github-Mev-Bot - DeFi协议项目评测"
+caption = "GitHub热门加密货币项目深度分析"
+relative = false
+hidden = false
 +++
 
 {{< alert >}}
