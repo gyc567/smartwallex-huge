@@ -444,6 +444,12 @@ class CryptoProjectAnalyzer:
 def main():
     """主函数"""
     
+    # 从环境变量获取参数
+    days_back = int(os.getenv('DAYS_BACK', '7'))
+    max_projects = int(os.getenv('MAX_PROJECTS', '3'))
+    
+    print(f"🔍 搜索参数: 最近 {days_back} 天, 最多 {max_projects} 个项目")
+    
     # 从环境变量获取GitHub token
     github_token = os.getenv('GITHUB_TOKEN')
     
@@ -466,7 +472,7 @@ def main():
     analyzed_projects = analyzer.load_analyzed_projects()
     
     try:
-        projects = analyzer.search_crypto_projects(days_back=30, max_projects=5)  # 扩大搜索范围
+        projects = analyzer.search_crypto_projects(days_back=days_back, max_projects=max_projects)
     except Exception as e:
         print(f"❌ 搜索项目时出错: {e}")
         return
@@ -521,20 +527,25 @@ def main():
             # 处理描述中的特殊字符
             description = project.get('description', '')
             if description:
-                description = description.replace("'", "\\'").replace('"', '\\"')[:150]
+                # 先处理转义字符，避免在f-string中使用反斜杠
+                description = description.replace("'", "''").replace('"', '""')[:150]
             else:
                 description = f"{project['name']}项目深度评测分析"
+            
+            # 处理标题中的特殊字符
+            safe_title = title.replace("'", "''")
+            safe_project_name = project['name'].replace("'", "''")
             
             # 创建Hugo文章
             hugo_content = f"""+++
 date = '{datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S+08:00')}'
 draft = false
-title = '{title.replace("'", "\\'")}'
+title = '{safe_title}'
 description = '{description}。GitHub {project['stargazers_count']:,} stars，{analyzer.analyze_project_category(project_details)}领域热门开源项目深度评测。'
-summary = '{project['name']}是一个备受关注的{analyzer.analyze_project_category(project_details)}项目，在GitHub上已获得{project['stargazers_count']:,}个星标。'
+summary = '{safe_project_name}是一个备受关注的{analyzer.analyze_project_category(project_details)}项目，在GitHub上已获得{project['stargazers_count']:,}个星标。'
 tags = ['GitHub', '开源项目', '加密货币', '{analyzer.analyze_project_category(project_details)}', '{project.get('language', 'Unknown')}', '项目评测']
 categories = ['GitHub热门']
-keywords = ['{project['name'].replace("'", "\\'")}评测', 'GitHub加密货币项目', '{analyzer.analyze_project_category(project_details)}工具', '开源区块链项目']
+keywords = ['{safe_project_name}评测', 'GitHub加密货币项目', '{analyzer.analyze_project_category(project_details)}工具', '开源区块链项目']
 author = 'ERIC'
 ShowToc = true
 TocOpen = false
