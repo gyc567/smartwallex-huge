@@ -1,0 +1,102 @@
+name: Manual Crypto Project Analysis
+
+on:
+  workflow_dispatch:
+    inputs:
+      days_back:
+        description: '搜索最近几天的项目'
+        required: false
+        default: '7'
+        type: string
+      max_projects:
+        description: '最多分析项目数量'
+        required: false
+        default: '3'
+        type: string
+
+jobs:
+  analyze-and-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # 允许写仓库内容
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r scripts/requirements.txt
+
+    - name: Setup Hugo
+      uses: peaceiris/actions-hugo@v2
+      with:
+        hugo-version: 'latest'
+        extended: true
+
+    - name: Configure Git
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+    - name: Run crypto project analyzer
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        DAYS_BACK: ${{ github.event.inputs.days_back || '7' }}
+        MAX_PROJECTS: ${{ github.event.inputs.max_projects || '3' }}
+      run: |
+        cd ${{ github.workspace }}
+        echo "🔍 搜索参数: 最近 $DAYS_BACK 天, 最多 $MAX_PROJECTS 个项目"
+        python scripts/crypto-project-analyzer.py
+
+    - name: List generated articles
+      run: |
+        echo "📚 生成的文章:"
+        find content/posts -name "*$(date +%Y-%m-%d)*" -type f -exec basename {} \; || echo "今日无新文章"
+
+    - name: Build Hugo site
+      run: |
+        echo "🏗️ 构建Hugo网站..."
+        hugo --cleanDestinationDir
+
+    - name: Commit and push changes
+      run: |
+        git add .
+        if git diff --staged --quiet; then
+          echo "ℹ️ 没有更改需要提交"
+        else
+          COMMIT_MSG="Manual trigger: Crypto project analysis for $(date +%Y-%m-%d)"
+          echo "📝 提交信息: $COMMIT_MSG"
+          git commit -m "$COMMIT_MSG" || exit 0
+          git push
+          echo "✅ 更改已推送到GitHub"
+        fi
+
+    - name: Create detailed summary
+      if: always()
+      run: |
+        echo "## 🚀 Manual Crypto Analysis Results" >> $GITHUB_STEP_SUMMARY
+        echo "- **Trigger Time**: $(date)" >> $GITHUB_STEP_SUMMARY
+        echo "- **Search Days**: ${{ github.event.inputs.days_back || '7' }}" >> $GITHUB_STEP_SUMMARY
+        echo "- **Max Projects**: ${{ github.event.inputs.max_projects || '3' }}" >> $GITHUB_STEP_SUMMARY
+        
+        NEW_ARTICLES=$(find content/posts -name "*$(date +%Y-%m-%d)*" -type f | wc -l)
+        echo "- **Generated Articles**: $NEW_ARTICLES" >> $GITHUB_STEP_SUMMARY
+        
+        if [ "$NEW_ARTICLES" -gt 0 ]; then
+          echo "### 📄 Generated Articles:" >> $GITHUB_STEP_SUMMARY
+          find content/posts -name "*$(date +%Y-%m-%d)*" -type f -exec basename {} \; | sed 's/^/- /' >> $GITHUB_STEP_SUMMARY
+        fi
+        
+        echo "### 📊 Repository Stats:" >> $GITHUB_STEP_SUMMARY
+        echo "- **Total Posts**: $(find content/posts -name "*.md" | wc -l)" >> $GITHUB_STEP_SUMMARY
+        echo "- **Recent Posts**: $(find content/posts -name "*.md" -mtime -7 | wc -l) (last 7 days)" >> $GITHUB_STEP_SUMMARY

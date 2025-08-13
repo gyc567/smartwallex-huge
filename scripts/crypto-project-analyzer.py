@@ -8,9 +8,10 @@ import requests
 import json
 import os
 import datetime
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Set
 import time
 import re
+import hashlib
 
 class CryptoProjectAnalyzer:
     def __init__(self, github_token: str = None):
@@ -21,62 +22,225 @@ class CryptoProjectAnalyzer:
         }
         if github_token:
             self.headers['Authorization'] = f'token {github_token}'
+        
+        # 项目历史记录文件路径
+        self.history_file = 'data/analyzed_projects.json'
+        self.ensure_data_directory()
     
-    def search_crypto_projects(self, days_back: int = 7) -> List[Dict[str, Any]]:
-        """搜索最近一周Star增长最快的加密货币项目"""
+    def ensure_data_directory(self):
+        """确保data目录存在"""
+        os.makedirs('data', exist_ok=True)
+    
+    def load_analyzed_projects(self) -> Set[str]:
+        """加载已分析的项目历史记录"""
+        try:
+            if os.path.exists(self.history_file):
+                with open(self.history_file, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                    return set(data.get('analyzed_projects', []))
+            return set()
+        except Exception as e:
+            print(f"⚠️  加载项目历史记录失败: {e}")
+            return set()
+    
+    def save_analyzed_projects(self, analyzed_projects: Set[str]):
+        """保存已分析的项目历史记录"""
+        try:
+            data = {
+                'last_updated': datetime.datetime.now().isoformat(),
+                'total_projects': len(analyzed_projects),
+                'analyzed_projects': list(analyzed_projects)
+            }
+            with open(self.history_file, 'w', encoding='utf-8') as f:
+                json.dump(data, f, ensure_ascii=False, indent=2)
+            print(f"✅ 已保存 {len(analyzed_projects)} 个项目记录")
+        except Exception as e:
+            print(f"⚠️  保存项目历史记录失败: {e}")
+    
+    def get_project_key(self, project: Dict[str, Any]) -> str:
+        """生成项目的唯一标识符"""
+        # 使用项目的full_name作为唯一标识
+        return project.get('full_name', f"{project.get('owner', {}).get('login', 'unknown')}/{project.get('name', 'unknown')}")
+    
+    def is_project_analyzed(self, project: Dict[str, Any], analyzed_projects: Set[str]) -> bool:
+        """检查项目是否已经被分析过"""
+        project_key = self.get_project_key(project)
+        return project_key in analyzed_projects
+    
+    def search_crypto_projects(self, days_back: int = 7, max_projects: int = 3) -> List[Dict[str, Any]]:
+        """搜索加密货币项目，确保不重复已分析的项目"""
         
-        # 计算日期范围
-        end_date = datetime.datetime.now()
-        start_date = end_date - datetime.timedelta(days=days_back)
-        date_filter = start_date.strftime('%Y-%m-%d')
+        # 加载已分析的项目历史
+        analyzed_projects = self.load_analyzed_projects()
+        print(f"📚 已分析项目数量: {len(analyzed_projects)}")
         
-        # 搜索关键词
-        crypto_keywords = [
-            'cryptocurrency', 'blockchain', 'bitcoin', 'ethereum', 
-            'defi', 'web3', 'crypto', 'dapp', 'smart-contract',
-            'trading', 'wallet', 'exchange', 'nft'
+        # 多种搜索策略
+        search_strategies = [
+            self._search_by_creation_date,
+            self._search_by_recent_activity,
+            self._search_by_trending,
+            self._search_by_language_specific
         ]
         
         all_projects = []
         
-        for keyword in crypto_keywords[:3]:  # 限制搜索次数避免API限制
+        for strategy in search_strategies:
             try:
-                # GitHub搜索API
-                search_url = 'https://api.github.com/search/repositories'
-                params = {
-                    'q': f'{keyword} created:>{date_filter} stars:>10',
-                    'sort': 'stars',
-                    'order': 'desc',
-                    'per_page': 10
-                }
-                
-                response = requests.get(search_url, headers=self.headers, params=params)
-                
-                if response.status_code == 200:
-                    data = response.json()
-                    all_projects.extend(data.get('items', []))
-                    time.sleep(1)  # 避免API限制
-                else:
-                    print(f"搜索失败: {keyword}, 状态码: {response.status_code}")
-                    
+                projects = strategy(days_back)
+                all_projects.extend(projects)
+                time.sleep(2)  # 避免API限制
             except Exception as e:
-                print(f"搜索 {keyword} 时出错: {e}")
+                print(f"⚠️  搜索策略执行失败: {e}")
                 continue
         
-        # 去重并按star数排序
+        # 去重并过滤已分析的项目
         unique_projects = {}
+        new_projects = []
+        
         for project in all_projects:
             repo_id = project['id']
-            if repo_id not in unique_projects:
+            project_key = self.get_project_key(project)
+            
+            # 跳过重复项目
+            if repo_id in unique_projects:
+                continue
+                
+            # 跳过已分析的项目
+            if project_key in analyzed_projects:
+                print(f"⏭️  跳过已分析项目: {project['name']}")
+                continue
+            
+            # 基本质量过滤
+            if self._is_quality_project(project):
                 unique_projects[repo_id] = project
+                new_projects.append(project)
         
+        # 按多个维度排序
         sorted_projects = sorted(
-            unique_projects.values(), 
-            key=lambda x: x['stargazers_count'], 
+            new_projects,
+            key=lambda x: (
+                x['stargazers_count'],  # 星标数
+                x['forks_count'],       # Fork数
+                -self._days_since_created(x),  # 创建时间（越新越好）
+                -self._days_since_updated(x)   # 更新时间（越新越好）
+            ),
             reverse=True
         )
         
-        return sorted_projects[:3]  # 返回前3个项目
+        print(f"🔍 找到 {len(sorted_projects)} 个新项目候选")
+        
+        return sorted_projects[:max_projects]
+    
+    def _search_by_creation_date(self, days_back: int) -> List[Dict[str, Any]]:
+        """按创建日期搜索新项目"""
+        end_date = datetime.datetime.now()
+        start_date = end_date - datetime.timedelta(days=days_back)
+        date_filter = start_date.strftime('%Y-%m-%d')
+        
+        crypto_keywords = [
+            'cryptocurrency', 'blockchain', 'bitcoin', 'ethereum', 
+            'defi', 'web3', 'crypto', 'dapp', 'smart-contract'
+        ]
+        
+        projects = []
+        for keyword in crypto_keywords[:3]:
+            projects.extend(self._search_github(f'{keyword} created:>{date_filter} stars:>5'))
+        
+        return projects
+    
+    def _search_by_recent_activity(self, days_back: int) -> List[Dict[str, Any]]:
+        """按最近活动搜索项目"""
+        end_date = datetime.datetime.now()
+        start_date = end_date - datetime.timedelta(days=days_back)
+        date_filter = start_date.strftime('%Y-%m-%d')
+        
+        activity_keywords = ['trading', 'wallet', 'exchange', 'nft', 'dao']
+        
+        projects = []
+        for keyword in activity_keywords[:2]:
+            projects.extend(self._search_github(f'{keyword} pushed:>{date_filter} stars:>10'))
+        
+        return projects
+    
+    def _search_by_trending(self, days_back: int) -> List[Dict[str, Any]]:
+        """搜索趋势项目"""
+        trending_keywords = ['mev', 'arbitrage', 'yield', 'staking', 'bridge']
+        
+        projects = []
+        for keyword in trending_keywords[:2]:
+            projects.extend(self._search_github(f'{keyword} stars:>5'))
+        
+        return projects
+    
+    def _search_by_language_specific(self, days_back: int) -> List[Dict[str, Any]]:
+        """按编程语言搜索"""
+        language_queries = [
+            'solidity cryptocurrency stars:>10',
+            'rust blockchain stars:>10',
+            'javascript web3 stars:>10'
+        ]
+        
+        projects = []
+        for query in language_queries[:2]:
+            projects.extend(self._search_github(query))
+        
+        return projects
+    
+    def _search_github(self, query: str, per_page: int = 10) -> List[Dict[str, Any]]:
+        """执行GitHub搜索"""
+        try:
+            search_url = 'https://api.github.com/search/repositories'
+            params = {
+                'q': query,
+                'sort': 'stars',
+                'order': 'desc',
+                'per_page': per_page
+            }
+            
+            response = requests.get(search_url, headers=self.headers, params=params)
+            
+            if response.status_code == 200:
+                data = response.json()
+                return data.get('items', [])
+            else:
+                print(f"⚠️  搜索失败: {query}, 状态码: {response.status_code}")
+                return []
+                
+        except Exception as e:
+            print(f"❌ 搜索执行失败: {e}")
+            return []
+    
+    def _is_quality_project(self, project: Dict[str, Any]) -> bool:
+        """判断项目是否符合质量标准"""
+        # 基本质量检查
+        if project['stargazers_count'] < 5:
+            return False
+        
+        # 检查是否有描述
+        if not project.get('description'):
+            return False
+        
+        # 检查是否太老（超过2年）
+        created_at = datetime.datetime.strptime(project['created_at'], '%Y-%m-%dT%H:%M:%SZ')
+        if (datetime.datetime.now() - created_at).days > 730:
+            return False
+        
+        # 检查最近是否有更新（6个月内）
+        updated_at = datetime.datetime.strptime(project['updated_at'], '%Y-%m-%dT%H:%M:%SZ')
+        if (datetime.datetime.now() - updated_at).days > 180:
+            return False
+        
+        return True
+    
+    def _days_since_created(self, project: Dict[str, Any]) -> int:
+        """计算项目创建天数"""
+        created_at = datetime.datetime.strptime(project['created_at'], '%Y-%m-%dT%H:%M:%SZ')
+        return (datetime.datetime.now() - created_at).days
+    
+    def _days_since_updated(self, project: Dict[str, Any]) -> int:
+        """计算项目最后更新天数"""
+        updated_at = datetime.datetime.strptime(project['updated_at'], '%Y-%m-%dT%H:%M:%SZ')
+        return (datetime.datetime.now() - updated_at).days
     
     def get_project_details(self, project: Dict[str, Any]) -> Dict[str, Any]:
         """获取项目详细信息"""
@@ -298,28 +462,36 @@ def main():
     
     print("🔍 开始搜索热门加密货币项目...")
     
+    # 加载已分析项目历史
+    analyzed_projects = analyzer.load_analyzed_projects()
+    
     try:
-        projects = analyzer.search_crypto_projects()
+        projects = analyzer.search_crypto_projects(days_back=30, max_projects=5)  # 扩大搜索范围
     except Exception as e:
         print(f"❌ 搜索项目时出错: {e}")
         return
     
     if not projects:
-        print("❌ 未找到符合条件的项目")
+        print("❌ 未找到符合条件的新项目")
+        print("💡 提示: 所有最近的项目可能都已经分析过了")
         return
     
-    print(f"✅ 找到 {len(projects)} 个热门项目")
+    print(f"✅ 找到 {len(projects)} 个新项目")
     
     # 生成今日日期用于文件名
     today = datetime.datetime.now().strftime('%Y-%m-%d')
     
-    # 检查今日是否已生成文章
-    existing_articles = len([f for f in os.listdir('content/posts') if today in f])
-    if existing_articles > 0:
-        print(f"ℹ️  今日已存在 {existing_articles} 篇文章，跳过生成")
+    # 检查今日是否已生成文章（更宽松的检查）
+    existing_articles = []
+    if os.path.exists('content/posts'):
+        existing_articles = [f for f in os.listdir('content/posts') if today in f and f.endswith('.md')]
+    
+    if len(existing_articles) >= 3:  # 每日最多3篇
+        print(f"ℹ️  今日已存在 {len(existing_articles)} 篇文章，达到每日限制")
         return
     
     generated_count = 0
+    newly_analyzed = set()
     
     for i, project in enumerate(projects, 1):
         try:
@@ -415,6 +587,10 @@ cover.hidden = false
             print(f"✅ 已生成文章: {output_path}")
             generated_count += 1
             
+            # 记录已分析的项目
+            project_key = analyzer.get_project_key(project)
+            newly_analyzed.add(project_key)
+            
             # 避免API限制
             time.sleep(2)
             
@@ -422,10 +598,18 @@ cover.hidden = false
             print(f"❌ 处理项目 {project['name']} 时出错: {e}")
             continue
     
+    # 更新项目历史记录
+    if newly_analyzed:
+        all_analyzed = analyzed_projects.union(newly_analyzed)
+        analyzer.save_analyzed_projects(all_analyzed)
+        print(f"📝 新增分析项目: {', '.join(newly_analyzed)}")
+    
     if generated_count > 0:
         print(f"\n🎉 完成！共生成 {generated_count} 篇评测文章")
+        print(f"📊 累计已分析项目: {len(analyzed_projects) + len(newly_analyzed)} 个")
     else:
         print(f"\n⚠️  未能生成任何文章")
+        print(f"💡 建议: 尝试扩大搜索范围或等待新项目出现")
 
 if __name__ == "__main__":
     main()

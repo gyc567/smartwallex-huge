@@ -1,0 +1,85 @@
+name: Daily Crypto Project Analysis
+
+on:
+  schedule:
+    # 每天UTC时间16:00运行（北京时间00:00）
+    - cron: '0 16 * * *'
+  workflow_dispatch: # 允许手动触发
+
+jobs:
+  analyze-and-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # 允许写仓库内容
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r scripts/requirements.txt
+
+    - name: Setup Hugo
+      uses: peaceiris/actions-hugo@v2
+      with:
+        hugo-version: 'latest'
+        extended: true
+
+    - name: Configure Git
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+    - name: Run crypto project analyzer
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        cd ${{ github.workspace }}
+        python scripts/crypto-project-analyzer.py
+
+    - name: Check for new articles
+      id: check_articles
+      run: |
+        NEW_ARTICLES=$(find content/posts -name "*$(date +%Y-%m-%d)*" -type f | wc -l)
+        echo "new_articles=$NEW_ARTICLES" >> $GITHUB_OUTPUT
+        echo "Found $NEW_ARTICLES new articles for today"
+
+    - name: Build Hugo site
+      if: steps.check_articles.outputs.new_articles > 0
+      run: |
+        hugo --cleanDestinationDir
+
+    - name: Commit and push changes
+      if: steps.check_articles.outputs.new_articles > 0
+      run: |
+        git add .
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "Auto-generated: Daily crypto project reviews for $(date +%Y-%m-%d)" || exit 0
+          git push
+        fi
+
+    - name: Create summary
+      if: always()
+      run: |
+        echo "## 📊 Daily Crypto Analysis Summary" >> $GITHUB_STEP_SUMMARY
+        echo "- **Date**: $(date +%Y-%m-%d)" >> $GITHUB_STEP_SUMMARY
+        echo "- **New Articles**: ${{ steps.check_articles.outputs.new_articles }}" >> $GITHUB_STEP_SUMMARY
+        if [ "${{ steps.check_articles.outputs.new_articles }}" -gt 0 ]; then
+          echo "- **Status**: ✅ Successfully generated and published" >> $GITHUB_STEP_SUMMARY
+          echo "### Generated Articles:" >> $GITHUB_STEP_SUMMARY
+          find content/posts -name "*$(date +%Y-%m-%d)*" -type f -exec basename {} \; | sed 's/^/- /' >> $GITHUB_STEP_SUMMARY
+        else
+          echo "- **Status**: ℹ️ No new articles generated today" >> $GITHUB_STEP_SUMMARY
+        fi

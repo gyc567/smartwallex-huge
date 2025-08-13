@@ -22,12 +22,5 @@
       <guid>http://localhost:1313/categories/%E5%85%AC%E5%91%8A/</guid>
       <description></description>
     </item>
-    <item>
-      <title>GitHub热门</title>
-      <link>http://localhost:1313/categories/github%E7%83%AD%E9%97%A8/</link>
-      <pubDate>Tue, 12 Aug 2025 10:39:27 +0800</pubDate>
-      <guid>http://localhost:1313/categories/github%E7%83%AD%E9%97%A8/</guid>
-      <description></description>
-    </item>
   </channel>
 </rss>
