@@ -1,0 +1,17 @@
+{{- $type := .Get 0 | default "info" -}}
+{{- $icon := .Get "icon" | default "" -}}
+
+<div class="alert alert-{{ $type }}" style="
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    border-left: 4px solid;
+    border-radius: 0.375rem;
+    background-color: var(--theme);
+    border-color: var(--border);
+    color: var(--primary);
+">
+    {{- if $icon -}}
+        <span style="margin-right: 0.5rem;">{{ $icon }}</span>
+    {{- end -}}
+    {{ .Inner | markdownify }}
+</div>

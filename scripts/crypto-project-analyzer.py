@@ -176,9 +176,9 @@ class CryptoProjectAnalyzer:
         github_url = basic_info['html_url']
         
         # 生成文章内容
-        content = f"""{{< alert >}}
+        content = f"""{{{{< alert >}}}}
 **项目快览**: {name}是一个{category}项目，GitHub上{stars:,}个⭐，主要使用{language}开发
-{{< /alert >}}
+{{{{< /alert >}}}}
 
 **{name}**是一个备受关注的{category}项目，在GitHub上已获得{stars:,}个星标，展现出强劲的社区关注度和发展潜力。该项目主要使用{language}开发，为加密货币生态系统提供创新解决方案。
 

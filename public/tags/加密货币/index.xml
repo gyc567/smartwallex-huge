@@ -2,25 +2,46 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>加密货币 on SmartWallex - 加密货币聪明钱信息聚合平台</title>
-    <link>http://localhost:53257/tags/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/</link>
+    <link>http://localhost:1313/tags/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/</link>
     <description>Recent content in 加密货币 on SmartWallex - 加密货币聪明钱信息聚合平台</description>
     <generator>Hugo -- 0.148.2</generator>
     <language>zh-cn</language>
     <lastBuildDate>Tue, 12 Aug 2025 17:19:19 +0800</lastBuildDate>
-    <atom:link href="http://localhost:53257/tags/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CoinMarketCap完整评测：2025年最权威的加密货币数据平台深度分析</title>
-      <link>http://localhost:53257/posts/coinmarketcap-review/</link>
+      <link>http://localhost:1313/posts/coinmarketcap-review/</link>
       <pubDate>Tue, 12 Aug 2025 17:19:19 +0800</pubDate>
-      <guid>http://localhost:53257/posts/coinmarketcap-review/</guid>
+      <guid>http://localhost:1313/posts/coinmarketcap-review/</guid>
       <description>CoinMarketCap全面评测指南，涵盖20000&#43;加密货币数据追踪、交易所排名、DeFi收益率聚合等核心功能。专业分析CMC的优缺点、使用技巧和付费服务，助力加密货币投资决策。</description>
     </item>
     <item>
       <title>SpotOnChain区块链分析平台深度评测：2025年最全面的链上数据分析工具指南</title>
-      <link>http://localhost:53257/posts/spotonchain-review/</link>
+      <link>http://localhost:1313/posts/spotonchain-review/</link>
       <pubDate>Tue, 12 Aug 2025 16:52:01 +0800</pubDate>
-      <guid>http://localhost:53257/posts/spotonchain-review/</guid>
+      <guid>http://localhost:1313/posts/spotonchain-review/</guid>
       <description>SpotOnChain区块链分析平台完整评测，包含功能详解、使用指南、优缺点分析和订阅建议。专业的链上数据追踪和智能分析工具，助力加密货币投资决策。</description>
+    </item>
+    <item>
+      <title>GitHub热门项目评测：Solana-bot - DeFi协议深度分析</title>
+      <link>http://localhost:1313/posts/github-crypto-solana-bot-review-2025-08-12/</link>
+      <pubDate>Tue, 12 Aug 2025 10:39:27 +0800</pubDate>
+      <guid>http://localhost:1313/posts/github-crypto-solana-bot-review-2025-08-12/</guid>
+      <description>🌫 Smart Solana MEV.. bot — runs in-browser or locally. Instantly analyzes transactions, snags profitable trades on Pump.FUN, Jupiter, and Raydium. Ful。GitHub 278 stars，DeFi协议领域热门开源项目深度评测。</description>
+    </item>
+    <item>
+      <title>GitHub热门项目评测：MEV-by-JaredFromSubway - DeFi协议深度分析</title>
+      <link>http://localhost:1313/posts/github-crypto-mev-by-jaredfromsubway-review-2025-08-12/</link>
+      <pubDate>Tue, 12 Aug 2025 10:39:23 +0800</pubDate>
+      <guid>http://localhost:1313/posts/github-crypto-mev-by-jaredfromsubway-review-2025-08-12/</guid>
+      <description>MEV 2 Bot by JaredFromSubway。GitHub 313 stars，DeFi协议领域热门开源项目深度评测。</description>
+    </item>
+    <item>
+      <title>GitHub热门项目评测：Github-Mev-Bot - DeFi协议深度分析</title>
+      <link>http://localhost:1313/posts/github-crypto-github-mev-bot-review-2025-08-12/</link>
+      <pubDate>Tue, 12 Aug 2025 10:39:20 +0800</pubDate>
+      <guid>http://localhost:1313/posts/github-crypto-github-mev-bot-review-2025-08-12/</guid>
+      <description>✅ Github ⚡ Source code and instructions for creating a passive income tool using an MEV bot.⚡Detailed setup and launch instructions for the MEV bot ar。GitHub 368 stars，DeFi协议领域热门开源项目深度评测。</description>
     </item>
   </channel>
 </rss>
