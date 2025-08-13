@@ -75,7 +75,7 @@ enableEmoji = true
   ShowBreadCrumbs = true
   ShowCodeCopyButtons = true
   ShowWordCount = true
-  ShowRssButtonInSectionTermList = true
+  ShowRssButtonInSectionTermList = false
   UseHugoToc = true
   disableSpecial1stPost = false
   disableScrollToTop = false
@@ -123,17 +123,6 @@ enableEmoji = true
 
 # 输出格式
 [outputs]
-  home = ["HTML", "RSS", "JSON"]
+  home = ["HTML", "JSON"]
 
-# 媒体类型配置
-[mediaTypes]
-  [mediaTypes."application/rss+xml"]
-    suffixes = ["xml"]
-
-# 输出格式配置
-[outputFormats]
-  [outputFormats.RSS]
-    mediaType = "application/rss+xml"
-    baseName = "feed"
-    isPlainText = false
-    notAlternative = false
+# 输出格式配置已简化，移除RSS相关配置
