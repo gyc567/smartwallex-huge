@@ -124,3 +124,16 @@ enableEmoji = true
 # 输出格式
 [outputs]
   home = ["HTML", "RSS", "JSON"]
+
+# 媒体类型配置
+[mediaTypes]
+  [mediaTypes."application/rss+xml"]
+    suffixes = ["xml"]
+
+# 输出格式配置
+[outputFormats]
+  [outputFormats.RSS]
+    mediaType = "application/rss+xml"
+    baseName = "feed"
+    isPlainText = false
+    notAlternative = false

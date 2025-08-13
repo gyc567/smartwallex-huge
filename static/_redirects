@@ -1,0 +1,6 @@
+# RSS feed redirects
+/rss /feed.xml 200
+/index.xml /feed.xml 200
+
+# Ensure root serves HTML
+/ /index.html 200

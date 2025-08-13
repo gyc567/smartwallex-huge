@@ -1,0 +1,16 @@
+# Force index.html as directory index
+DirectoryIndex index.html index.xml
+
+# RSS feed aliases
+RewriteEngine On
+RewriteRule ^rss/?$ /feed.xml [L]
+RewriteRule ^index\.xml$ /feed.xml [L]
+
+# Ensure proper MIME types
+<Files "*.xml">
+    Header set Content-Type "application/xml; charset=utf-8"
+</Files>
+
+<Files "feed.xml">
+    Header set Content-Type "application/rss+xml; charset=utf-8"
+</Files>

@@ -1,0 +1,62 @@
+{
+  "functions": {
+    "app.js": {
+      "runtime": "@vercel/static"
+    }
+  },
+  "routes": [
+    {
+      "src": "^/$",
+      "dest": "/index.html"
+    },
+    {
+      "src": "^/rss/?$",
+      "dest": "/feed.xml"
+    },
+    {
+      "src": "^/feed/?$",
+      "dest": "/feed.xml"
+    },
+    {
+      "src": "^/index\\.xml$",
+      "dest": "/feed.xml"
+    },
+    {
+      "src": "^/sitemap\\.xml$",
+      "dest": "/sitemap.xml"
+    },
+    {
+      "src": "^/(.*)",
+      "dest": "/$1"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/feed.xml",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/rss+xml; charset=utf-8"
+        }
+      ]
+    },
+    {
+      "source": "/sitemap.xml",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/xml; charset=utf-8"
+        }
+      ]
+    },
+    {
+      "source": "/(.*\\.xsl)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/xslt+xml; charset=utf-8"
+        }
+      ]
+    }
+  ]
+}
