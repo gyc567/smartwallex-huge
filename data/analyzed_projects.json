@@ -1,12 +1,15 @@
 {
-  "last_updated": "2025-08-14T16:09:02.985448",
-  "total_projects": 6,
+  "last_updated": "2025-08-15T16:08:27.377805",
+  "total_projects": 9,
   "analyzed_projects": [
-    "Foulvelstingw3S/Github-Mev-Bot",
-    "Zalthorwb6BI/Frontrunning-Mev-Bot",
-    "Cyfrin/security-and-auditing-full-course-s23",
+    "crestalnetwork/intentkit",
     "PhexionspqzSU/UNISWAP-BOT",
+    "Zalthorwb6BI/Frontrunning-Mev-Bot",
+    "Kurisaitou/auto-swap-plume-season-2-in-6-DAPPs",
+    "Foulvelstingw3S/Github-Mev-Bot",
+    "Kurisaitou/Auto-Swap-Momentum-Finance",
     "Smart-rwl/AI-for-Trading",
-    "crestalnetwork/intentkit"
+    "milu7735/BTC-Seed-Phrase-Gen",
+    "Cyfrin/security-and-auditing-full-course-s23"
   ]
 }
