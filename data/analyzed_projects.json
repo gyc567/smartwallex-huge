@@ -1,18 +1,21 @@
 {
-  "last_updated": "2025-08-16T16:07:22.768499",
-  "total_projects": 12,
+  "last_updated": "2025-08-17T16:07:27.004971",
+  "total_projects": 15,
   "analyzed_projects": [
-    "Cyfrin/security-and-auditing-full-course-s23",
-    "Zalthorwb6BI/Frontrunning-Mev-Bot",
-    "Smart-rwl/AI-for-Trading",
-    "PhexionspqzSU/UNISWAP-BOT",
     "Foulvelstingw3S/Github-Mev-Bot",
+    "Cyfrin/security-and-auditing-full-course-s23",
+    "Smart-rwl/AI-for-Trading",
+    "walletgen-btc/crypto-wallets-finder",
+    "halthork28Xur/Frontrunning-Mev-Bot",
+    "elsirion/broadnym",
+    "PhexionspqzSU/UNISWAP-BOT",
     "Pioneers-Labs/solana-dex-trading-sdk-rust",
-    "vibheksoni/axiomtrade-rs",
+    "Zalthorwb6BI/Frontrunning-Mev-Bot",
     "milu7735/BTC-Seed-Phrase-Gen",
     "crestalnetwork/intentkit",
     "anthugeist/synapse-bot",
+    "Kurisaitou/auto-swap-plume-season-2-in-6-DAPPs",
     "Kurisaitou/Auto-Swap-Momentum-Finance",
-    "Kurisaitou/auto-swap-plume-season-2-in-6-DAPPs"
+    "vibheksoni/axiomtrade-rs"
   ]
 }
